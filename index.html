@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1c3826">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Kirmes Oberweyer 2026 · 26.–28. September</title>
+<style>
+  :root{
+    --cream:#ede3cf;
+    --cream-dark:#e2d5b8;
+    --paper:#f4ead6;
+    --green-dark:#1c3826;
+    --green:#24462f;
+    --green-light:#2f5a3c;
+    --red:#8f2a26;
+    --red-dark:#711f1c;
+    --gold:#c9982f;
+    --gold-light:#dcb655;
+    --ink:#2a2117;
+    --shadow: 0 6px 18px rgba(28,56,38,0.25);
+    font-size: 16px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html{
+    scroll-behavior:smooth;
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+  }
+  body{
+    margin:0;
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    background:
+      radial-gradient(ellipse at top, rgba(255,255,255,0.15), transparent 60%),
+      var(--cream);
+    color:var(--ink);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, transparent 1px, transparent 2px),
+      linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  section, header.hero{ scroll-margin-top: 52px; }
+  h1,h2,h3,.display{
+    font-family: 'Baskerville', 'Georgia', serif;
+    letter-spacing: 0.02em;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  /* ===== Lights top bar ===== */
+  .lights-bar{
+    position:relative;
+    height:34px;
+    background: linear-gradient(180deg,var(--green-dark),var(--green));
+    overflow:hidden;
+  }
+  .lights-bar .wire{
+    position:absolute; left:0; right:0; top:14px; height:2px;
+    background: repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,255,255,0.25) 18px 19px);
+  }
+  .bulb{
+    position:absolute; top:16px; width:10px; height:12px; border-radius:50% 50% 45% 45%;
+    background: radial-gradient(circle at 35% 30%, #fff6c8, var(--gold) 70%);
+    box-shadow: 0 0 8px 2px rgba(255, 214, 120, 0.7);
+    animation: twinkle 2.4s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:1; transform:scale(1);}
+    50%{opacity:.55; transform:scale(.85);}
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    padding: 34px 20px 46px;
+    text-align:center;
+    border-bottom: 6px solid var(--green-dark);
+  }
+  .badge-oberweyer{
+    display:inline-block;
+    background: var(--cream-dark);
+    color: var(--green-dark);
+    border: 2px solid var(--green-dark);
+    border-radius: 6px;
+    padding: 8px 22px;
+    font-weight:bold;
+    font-size: 1.1rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    box-shadow: var(--shadow);
+    transform: rotate(-1deg);
+  }
+  .badge-oberweyer small{
+    display:block;
+    font-size:0.6rem;
+    letter-spacing:0.15em;
+    color:var(--red);
+    margin-top:4px;
+  }
+  .kirmes-title{
+    font-size: clamp(3.2rem, 15vw, 6rem);
+    color:#fff;
+    -webkit-text-stroke: 2px var(--green-dark);
+    text-shadow:
+      3px 3px 0 var(--green-dark),
+      6px 6px 12px rgba(0,0,0,0.25);
+    margin: 10px 0 18px;
+    font-weight:900;
+    letter-spacing:0.03em;
+  }
+  .date-banner{
+    display:inline-block;
+    background: linear-gradient(180deg, var(--red), var(--red-dark));
+    color:#fff;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-size: clamp(1.4rem,5vw,2.2rem);
+    font-weight:bold;
+    box-shadow: var(--shadow);
+    transform: rotate(0.6deg);
+    margin-bottom: 6px;
+  }
+  .tagline{
+    margin-top:14px;
+    font-style:italic;
+    color:var(--green-dark);
+    font-size:1.05rem;
+  }
+
+  /* ===== Countdown ===== */
+  .countdown-wrap{
+    max-width: 640px;
+    margin: 26px auto 0;
+    background: var(--paper);
+    border: 2px solid var(--green-dark);
+    border-radius: 10px;
+    padding: 18px 14px;
+    box-shadow: var(--shadow);
+  }
+  .countdown-label{
+    text-align:center;
+    color:var(--green-dark);
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-size:0.85rem;
+    margin-bottom:10px;
+  }
+  .countdown{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .countdown .unit{
+    background: var(--green-dark);
+    color:#fff;
+    border-radius:8px;
+    padding: 10px 6px;
+    text-align:center;
+    min-width:0;
+  }
+  .countdown .unit .num{
+    font-size: clamp(1.15rem, 5.5vw, 1.6rem);
+    font-weight:bold;
+    font-family: Georgia, serif;
+    font-variant-numeric: tabular-nums;
+  }
+  .countdown .unit .lbl{
+    font-size: clamp(0.55rem, 2.4vw, 0.65rem);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    opacity:0.85;
+    white-space:nowrap;
+  }
+  .countdown.done{color:var(--red); font-weight:bold; text-align:center; font-size:1.2rem; padding:8px; display:block;}
+
+  /* ===== Ticket cards Sa/So ===== */
+  .tickets{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 0 16px;
+  }
+  @media (max-width:520px){ .tickets{grid-template-columns: 1fr;} }
+  .ticket-card{
+    position:relative;
+    border-radius: 10px;
+    padding: 26px 18px 22px;
+    text-align:center;
+    box-shadow: var(--shadow);
+    cursor:pointer;
+    transition: transform .15s ease;
+    border: 2px dashed rgba(255,255,255,0.35);
+    touch-action: manipulation;
+  }
+  .ticket-card:hover{ transform: translateY(-4px); }
+  .ticket-card:active{ transform: translateY(-1px) scale(0.98); }
+  .ticket-card.sat{ background: linear-gradient(160deg, var(--green), var(--green-dark)); color:#fff; }
+  .ticket-card.sun{ background: linear-gradient(160deg, var(--gold-light), var(--gold)); color:var(--green-dark); }
+  .ticket-card .day{
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.85rem;
+    font-weight:bold;
+  }
+  .ticket-card .icon{ font-size:2.4rem; margin:10px 0; }
+  .ticket-card .what{
+    font-size:1.7rem;
+    font-weight:bold;
+    font-family: Georgia, serif;
+  }
+  .ticket-card .date-sub{
+    margin-top:8px;
+    font-size:0.85rem;
+    opacity:0.9;
+  }
+
+  /* ===== Vorverkauf banner ===== */
+  .vvk-banner{
+    max-width:900px;
+    margin: 0 auto 40px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    color: var(--green-dark);
+    text-align:center;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-weight:bold;
+    box-shadow: var(--shadow);
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-size:1.05rem;
+  }
+  .vvk-banner .icon{font-size:1.4rem;}
+
+  /* ===== Section headers ===== */
+  section{ max-width: 900px; margin: 0 auto; padding: 10px 18px 50px; }
+  .section-title{
+    text-align:center;
+    color:var(--green-dark);
+    font-size:1.8rem;
+    margin-bottom: 6px;
+  }
+  .section-sub{
+    text-align:center;
+    color:#5b5140;
+    font-style:italic;
+    margin-bottom: 28px;
+  }
+
+  /* ===== Program accordion ===== */
+  .day-card{
+    background: var(--paper);
+    border-left: 6px solid var(--green-dark);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
+  .day-card.highlight{ border-left-color: var(--red); }
+  .day-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    min-height: 44px;
+    cursor:pointer;
+    user-select:none;
+    touch-action: manipulation;
+  }
+  .day-head:hover{ background: rgba(0,0,0,0.03); }
+  .day-head:active{ background: rgba(0,0,0,0.06); }
+  .day-head .weekday{
+    font-weight:bold;
+    font-size:1.15rem;
+    color:var(--green-dark);
+  }
+  .day-head .thedate{
+    font-size:0.9rem;
+    color:#7a6f5a;
+    margin-left:8px;
+    font-weight:normal;
+  }
+  .day-head .chip{
+    background:var(--red);
+    color:#fff;
+    font-size:0.7rem;
+    padding:2px 9px;
+    border-radius:12px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-left:8px;
+  }
+  .day-head .arrow{
+    font-size:1.2rem;
+    color:var(--green-dark);
+    transition: transform 0.25s ease;
+    flex-shrink:0;
+  }
+  .day-card.open .arrow{ transform: rotate(180deg); }
+  .day-body{
+    max-height:0;
+    overflow:hidden;
+    transition: max-height 0.35s ease, padding 0.2s ease;
+    padding: 0 18px;
+  }
+  .day-card.open .day-body{ padding-bottom:16px; }
+  .day-card.no-transition .day-body{ transition:none; }
+  .event-row{
+    display:flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-top: 1px dotted rgba(0,0,0,0.15);
+  }
+  .event-row:first-child{ border-top:none; }
+  .event-row .time{
+    flex-shrink:0;
+    width: 68px;
+    font-weight:bold;
+    color:var(--red);
+  }
+  .event-row .desc{ flex:1; }
+
+  /* ===== Info grid ===== */
+  .info-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width:560px){ .info-grid{grid-template-columns: 1fr;} }
+  .info-card{
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    display:flex;
+    gap: 12px;
+    align-items:flex-start;
+  }
+  .info-card .icon{ font-size:1.6rem; }
+  .info-card .title{ font-weight:bold; color:var(--green-dark); margin-bottom:2px; }
+  .info-card .note{ color:#5b5140; font-size:0.92rem; }
+  .info-card .price{ color:var(--red); font-weight:bold; }
+
+  /* ===== Beer badge ===== */
+  .welcome-badge{
+    width: min(220px, 55vw);
+    max-width: 320px;
+    margin: 40px auto;
+    text-align:center;
+    background: var(--cream-dark);
+    border: 3px solid var(--green-dark);
+    border-radius: 50%;
+    aspect-ratio:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding: 20px;
+    box-shadow: var(--shadow);
+  }
+  .welcome-badge .icon{font-size:2.4rem;}
+  .welcome-badge .txt{
+    color:var(--green-dark);
+    font-weight:bold;
+    margin-top:10px;
+    line-height:1.3;
+  }
+
+  /* ===== Village silhouette footer ===== */
+  .village-footer{
+    position:relative;
+    background: var(--green-dark);
+    padding: 60px 20px 20px;
+    color: var(--cream);
+    text-align:center;
+    overflow:hidden;
+  }
+  .village-footer svg{ width:100%; height:auto; display:block; opacity:0.5; margin-bottom:-4px; }
+  .footer-note{
+    max-width:700px;
+    margin: 0 auto 14px;
+    background: var(--green);
+    display:inline-block;
+    padding: 14px 22px;
+    border-radius:6px;
+    transform: rotate(-1deg);
+  }
+  .footer-note b{ color: var(--gold-light); }
+  .footer-small{
+    font-size:0.78rem;
+    opacity:0.75;
+    margin-top:20px;
+  }
+
+  /* ===== Share / CTA ===== */
+  .cta-row{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin: 34px 0 6px;
+  }
+  .btn{
+    border:none;
+    cursor:pointer;
+    padding: 14px 24px;
+    min-height: 46px;
+    border-radius: 30px;
+    font-weight:bold;
+    font-size:0.95rem;
+    box-shadow: var(--shadow);
+    font-family: inherit;
+    touch-action: manipulation;
+    transition: transform .12s ease, filter .12s ease;
+  }
+  .btn.primary{ background: var(--red); color:#fff; }
+  .btn.secondary{ background: var(--green-dark); color:#fff; }
+  .btn.ghost{ background: transparent; color:var(--green-dark); border:2px solid var(--green-dark); box-shadow:none; }
+  .btn:hover{ filter:brightness(1.08); }
+  .btn:active{ transform: scale(0.96); filter:brightness(0.96); }
+
+  .toast{
+    position:fixed;
+    bottom:20px; left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background: var(--green-dark);
+    color:#fff;
+    padding: 10px 20px;
+    border-radius: 24px;
+    font-size:0.9rem;
+    opacity:0;
+    pointer-events:none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    z-index:50;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  nav.stickynav{
+    position:sticky; top:0; z-index:40;
+    background: rgba(28,56,38,0.96);
+    backdrop-filter: blur(3px);
+    display:flex;
+    justify-content:center;
+    gap: 2px;
+    padding: 6px;
+    flex-wrap:wrap;
+  }
+  nav.stickynav a{
+    color: var(--cream);
+    text-decoration:none;
+    font-size:0.82rem;
+    padding: 10px 12px;
+    min-height: 40px;
+    display:flex;
+    align-items:center;
+    border-radius: 16px;
+    letter-spacing:0.03em;
+    touch-action: manipulation;
+  }
+  nav.stickynav a:hover{ background: rgba(255,255,255,0.12); }
+  nav.stickynav a:active{ background: rgba(255,255,255,0.2); }
+
+  /* ===== Mobile fine-tuning ===== */
+  @media (max-width:480px){
+    .hero{ padding: 24px 14px 34px; }
+    .badge-oberweyer{ padding:7px 16px; font-size:1rem; }
+    .countdown-wrap{ padding:14px 10px; margin-top:20px; }
+    section{ padding: 8px 14px 40px; }
+    .tickets{ padding:0 14px; margin:32px auto; }
+    .ticket-card{ padding:20px 14px 18px; }
+    .ticket-card .icon{ font-size:2rem; margin:8px 0; }
+    .ticket-card .what{ font-size:1.4rem; }
+    .vvk-banner{ font-size:0.92rem; padding:14px 16px; }
+    .day-head{ padding:13px 14px; }
+    .info-card{ padding:14px 15px; }
+    .cta-row{ gap:10px; }
+    .btn{ padding:13px 18px; font-size:0.9rem; flex:1 1 auto; }
+    .village-footer{ padding:44px 14px 18px; }
+  }
+  @media (max-width:360px){
+    .kirmes-title{ letter-spacing:0.01em; }
+    .countdown .unit{ padding:8px 4px; }
+    .date-banner{ padding:10px 20px; }
+  }
+
+  /* Respect users who prefer less motion */
+  @media (prefers-reduced-motion: reduce){
+    .bulb{ animation: none; }
+    html{ scroll-behavior:auto; }
+    *{ transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lights-bar" id="lightsBar"><div class="wire"></div></div>
+
+<nav class="stickynav">
+  <a href="#programm">Programm</a>
+  <a href="#tickets">Eintritt</a>
+  <a href="#infos">Infos</a>
+  <a href="#kontakt">Kontakt</a>
+</nav>
+
+<header class="hero">
+  <div class="badge-oberweyer">Oberweyer<br><small>❤ Herzlich Willkommen ❤</small></div>
+  <h1 class="kirmes-title">KIRMES</h1>
+  <div class="date-banner">26.–28. September</div>
+  <div class="tagline">„Wie in der Kneipe!“ — kommt vorbei und feiert mit uns ein unvergessliches Kirmeswochenende!</div>
+
+  <div class="countdown-wrap">
+    <div class="countdown-label">Es geht los in</div>
+    <div class="countdown" id="countdown">
+      <div class="unit"><div class="num" id="cd-days">–</div><div class="lbl">Tage</div></div>
+      <div class="unit"><div class="num" id="cd-hours">–</div><div class="lbl">Std</div></div>
+      <div class="unit"><div class="num" id="cd-min">–</div><div class="lbl">Min</div></div>
+      <div class="unit"><div class="num" id="cd-sec">–</div><div class="lbl">Sek</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="tickets">
+  <div class="tickets">
+    <div class="ticket-card sat" onclick="toast('Samstag: DJ-MMB – bis in die Nacht!')">
+      <div class="day">★ Samstag ★</div>
+      <div class="icon">🎧</div>
+      <div class="what">DJ-MMB</div>
+      <div class="date-sub">26. September</div>
+    </div>
+    <div class="ticket-card sun" onclick="toast('Sonntag: Blasmusik im Wiesenpark')">
+      <div class="day">★ Sonntag ★</div>
+      <div class="icon">🎺</div>
+      <div class="what">Blasmusik</div>
+      <div class="date-sub">27. September</div>
+    </div>
+  </div>
+
+  <div class="vvk-banner">
+    <span class="icon">🗓️</span>
+    <span>Kartenvorverkauf am <strong>21.08.2026 um 19:00 Uhr</strong> am Wiesenpark</span>
+  </div>
+</section>
+
+<section id="programm">
+  <h2 class="section-title">Das Programm</h2>
+  <p class="section-sub">Von den Fahnen bis zur Tombola — die ganze Kirmeswoche 2026</p>
+  <div id="program-list"></div>
+</section>
+
+<section id="infos">
+  <h2 class="section-title">Gut zu wissen</h2>
+  <p class="section-sub">Essen, Eintritt & Bezahlung</p>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="icon">🔥</div>
+      <div>
+        <div class="title">Essen vom Frenzer Grill</div>
+        <div class="note">Für Speis und Trank ist gesorgt.</div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="icon">🎟️</div>
+      <div>
+        <div class="title">Eintritt Samstag</div>
+        <div class="note">Vorverkauf <span class="price">5&nbsp;€</span> · Abendkasse <span class="price">7&nbsp;€</span></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="icon">👥</div>
+      <div>
+        <div class="title">Kirmesburschen-Gruppen</div>
+        <div class="note">Ab 6 Personen <span class="price">frei</span></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="icon">💳</div>
+      <div>
+        <div class="title">Kartenzahlung möglich</div>
+        <div class="note">An der Kirmes könnt ihr auch mit Karte zahlen.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="welcome-badge">
+    <div class="icon">🍺</div>
+    <div class="txt">Wir freuen<br>uns auf euch!</div>
+  </div>
+</section>
+
+<div class="cta-row">
+  <button class="btn primary" onclick="addToCalendar()">📅 Zum Kalender hinzufügen</button>
+  <button class="btn secondary" onclick="shareEvent()">📤 Teilen</button>
+</div>
+
+<footer class="village-footer" id="kontakt">
+  <svg viewBox="0 0 1000 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#ede3cf" stroke-width="2">
+      <polyline points="0,150 40,150 40,110 90,110 90,150 140,150 140,90 165,60 190,90 190,150 260,150 260,100 300,100 300,150 340,150 340,60 360,40 380,60 380,150 460,150 460,20 460,150 500,150 500,70 560,70 560,150 620,150 620,95 660,95 660,150 720,150 720,60 760,60 760,150 820,150 820,110 880,110 880,150 940,150 940,120 1000,120 1000,160 0,160"/>
+      <rect x="440" y="10" width="40" height="30"/>
+      <line x1="460" y1="10" x2="460" y2="0"/>
+    </g>
+    <circle cx="880" cy="55" r="34" fill="none" stroke="#ede3cf" stroke-width="2" opacity="0.6"/>
+  </svg>
+
+  <div class="footer-note">
+    Kommt vorbei und feiert mit uns ein unvergessliches <b>Kirmeswochenende!</b> ♡
+  </div>
+
+  <div class="footer-small">
+    Keine Sitzplatzgarantie · Keine Erstattung des Eintritts bei Kartenrückgabe<br>
+    Kirmes Oberweyer · 26.–28. September 2026
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ---- twinkling lights ----
+  const bar = document.getElementById('lightsBar');
+  const barWidth = 1200;
+  for(let x=20; x<barWidth; x+=34){
+    const b = document.createElement('div');
+    b.className='bulb';
+    b.style.left = (x/barWidth*100)+'%';
+    b.style.animationDelay = (Math.random()*2.4)+'s';
+    bar.appendChild(b);
+  }
+
+  // ---- countdown ----
+  const kirmesStart = new Date('2026-09-26T18:00:00');
+  function updateCountdown(){
+    const now = new Date();
+    const diff = kirmesStart - now;
+    const wrap = document.getElementById('countdown');
+    if(diff <= 0){
+      wrap.classList.add('done');
+      wrap.innerHTML = '🎉 Die Kirmes läuft — bis gleich im Wiesenpark! 🎉';
+      return;
+    }
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor(diff%86400000/3600000);
+    const m = Math.floor(diff%3600000/60000);
+    const s = Math.floor(diff%60000/1000);
+    document.getElementById('cd-days').textContent = d;
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-sec').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ---- program data (2025 schedule translated to 2026 dates, same weekdays) ----
+  const program = [
+    {
+      weekday:'Mittwoch', date:'23.09.2026', highlight:false,
+      events:[{time:'', desc:'Dorffahnen hissen … die Oberweyer Kirmes wird gehalle'}]
+    },
+    {
+      weekday:'Donnerstag', date:'24.09.2026', highlight:false,
+      events:[{time:'19:30', desc:'Einstimmen zur Kirmes im Sportheim'}]
+    },
+    {
+      weekday:'Freitag', date:'25.09.2026', highlight:false,
+      events:[
+        {time:'11:00', desc:'Baumstellen am Kiga (ca.)'},
+        {time:'20:00', desc:'Kirmesparty in Schuys Pilsstube'}
+      ]
+    },
+    {
+      weekday:'Samstag', date:'26.09.2026', highlight:true,
+      events:[
+        {time:'10:00', desc:'Eier und Speck sammeln im Dorf'},
+        {time:'13:00', desc:'Eierbacken im Wiesenpark und Einstimmung auf den Abend'},
+        {time:'18:00', desc:'Einlass „Kneipen-Kirmes“ — Abends: DJ-MMB'}
+      ]
+    },
+    {
+      weekday:'Sonntag', date:'27.09.2026', highlight:true,
+      events:[
+        {time:'10:45', desc:'Kirchweih-Gottesdienst in der Pfarrkirche, anschließend Frühschoppen in Schuys Pilsstube'},
+        {time:'14:30', desc:'Treffpunkt am Kindergarten zum gemeinsamen Abholen der Kiga-Kinder und Umzug durch das Dorf mit Blasmusik'},
+        {time:'15:00', desc:'Familiennachmittag mit Blasmusik im Wiesenpark'}
+      ]
+    },
+    {
+      weekday:'Montag', date:'28.09.2026', highlight:true,
+      events:[
+        {time:'11:30', desc:'Frühschoppen im Wiesenpark'},
+        {time:'15:00', desc:'Tombola'}
+      ]
+    },
+    {
+      weekday:'Dienstag', date:'29.09.2026', highlight:false,
+      events:[{time:'', desc:'Dorffahnen einholen … die Oberweyrer Kirmes wurd gehalle'}]
+    }
+  ];
+
+  const list = document.getElementById('program-list');
+  program.forEach((day, i) => {
+    const card = document.createElement('div');
+    card.className = 'day-card' + (day.highlight ? ' highlight' : '') + (day.highlight && i===3 ? ' open' : '');
+    const rows = day.events.map(e =>
+      `<div class="event-row">
+        <div class="time">${e.time || ''}</div>
+        <div class="desc">${e.desc}</div>
+      </div>`
+    ).join('');
+    card.innerHTML = `
+      <div class="day-head">
+        <div>
+          <span class="weekday">${day.weekday}</span>
+          <span class="thedate">${day.date}</span>
+          ${day.highlight ? '<span class="chip">Kirmes</span>' : ''}
+        </div>
+        <div class="arrow">▾</div>
+      </div>
+      <div class="day-body">${rows}</div>
+    `;
+    const body = card.querySelector('.day-body');
+    card.querySelector('.day-head').addEventListener('click', () => {
+      const opening = !card.classList.contains('open');
+      card.classList.toggle('open');
+      body.style.maxHeight = opening ? body.scrollHeight + 40 + 'px' : '0px';
+    });
+    list.appendChild(card);
+  });
+
+  // set initial max-height for any pre-opened card, after layout settles
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.day-card.open .day-body').forEach(b => {
+      b.style.maxHeight = b.scrollHeight + 40 + 'px';
+    });
+  });
+
+  // ---- toast ----
+  let toastTimer;
+  function toast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=> t.classList.remove('show'), 2600);
+  }
+
+  // ---- add to calendar (.ics) ----
+  function addToCalendar(){
+    const ics = [
+      'BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
+      'SUMMARY:Kirmes Oberweyer',
+      'DTSTART:20260926T160000',
+      'DTEND:20260928T220000',
+      'LOCATION:Wiesenpark, Oberweyer',
+      'DESCRIPTION:Kirmes Oberweyer – Samstag DJ-MMB, Sonntag Blasmusik. Kartenvorverkauf am 21.08.2026 um 19:00 Uhr am Wiesenpark.',
+      'END:VEVENT','END:VCALENDAR'
+    ].join('\r\n');
+    const blob = new Blob([ics], {type:'text/calendar'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'kirmes-oberweyer-2026.ics';
+    a.click();
+    toast('Kalendereintrag heruntergeladen 📅');
+  }
+
+  function shareEvent(){
+    const shareData = {
+      title: 'Kirmes Oberweyer 2026',
+      text: 'Kirmes Oberweyer — 26.–28. September 2026. Samstag DJ-MMB, Sonntag Blasmusik!',
+      url: window.location.href
+    };
+    if(navigator.share){
+      navigator.share(shareData).catch(()=>{});
+    } else {
+      navigator.clipboard?.writeText(shareData.text + ' ' + shareData.url).then(()=>{
+        toast('Info in Zwischenablage kopiert ✂️');
+      }).catch(()=> toast('Teilen nicht unterstützt'));
+    }
+  }
+</script>
+
+</body>
+</html>
